@@ -5,12 +5,13 @@ using namespace std;
 template <class ItemType>
 StackType<ItemType>::StackType()
 {
-top = -1;
+    length=0;
+    top = -1;
 }
 template <class ItemType>
 bool StackType<ItemType>::IsEmpty()
 {
-return (top == -1);
+return (length ==0);
 }
 template <class ItemType>
 bool StackType<ItemType>::IsFull()
@@ -22,6 +23,7 @@ void StackType<ItemType>::Push(ItemType newItem)
 {
 if( IsFull() ) throw FullStack();
 top++;
+length++;
 items[top] = newItem;
 }
 template <class ItemType>
@@ -29,6 +31,7 @@ void StackType<ItemType>::Pop()
 {
 if( IsEmpty() ) throw EmptyStack();
 top--;
+length--;
 }
 template <class ItemType>
 ItemType StackType<ItemType>::Top()
@@ -45,10 +48,25 @@ ItemType StackType<ItemType>::getnext()
 }
 template <class ItemType>
 void StackType<ItemType>::printStack(){
-    while(top!=MAX_ITEMS-1)
+    top=-1;
+    while(top!=length-1)
     {
         cout<<getnext()<<endl;
     }
     top=-1;
-    
 }
+    bool is_balanced_parentheses(string input_string) {
+    StackType<char> s;
+    for (char c : input_string) {
+        if (c == '(') {
+            s.Push(c);
+        } else if (c == ')') {
+            if (s.IsEmpty()) {
+                return false;
+            }
+            s.Pop();
+        }
+    }
+    return s.IsEmpty();
+}
+    
