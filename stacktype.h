@@ -21,9 +21,10 @@ void Pop();
 ItemType Top();
 ItemType getnext();
 void printStack();
+ is_balanced_parentheses(std::string input_string);
 private:
+int length;
 int top;
 ItemType items[MAX_ITEMS];
 };
 #endif // STACKTYPE_H_INCLUDED
-
